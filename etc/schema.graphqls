@@ -1,0 +1,33 @@
+type Query {
+    pickUpStores(
+        filter: PickUpStoresFilterInput @doc(description: "")
+        pageSize: Int = 5 @doc(description: "How many items should show on the page")
+        currentPage: Int = 1 @doc(description: "Allows to ussing paging it start with 1")
+    ):pickUpStoresOutput @resolver(class: "\\LarsRoettig\\GraphQLStorePickup\\Model\\Resolver\\PickUpStores") @doc(description: "The Impelemention to resolve PickUp stores")
+}
+
+input PickUpStoresFilterInput {
+    name: FilterTypeInput  @doc(description: "")
+    postcode: FilterTypeInput @doc(description: ""),
+    street: FilterTypeInput @doc(description: ""),
+    street_num: FilterTypeInput @doc(description: ""),
+    city: FilterTypeInput @doc(description: ""),
+    latitude:FilterTypeInput @doc(description: ""),
+    longitude: FilterTypeInput @doc(description: ""),
+    or: PickUpStoresFilterInput
+}
+
+type pickUpStoresOutput {
+    total_count:  Int @doc(description: "")
+    items: [PickUpStore] @doc(description: "")
+}
+
+type PickUpStore {
+    name: String @doc(description: ""),
+    street: String @doc(description: ""),
+    street_num: Int @doc(description: ""),
+    city: String @doc(description: ""),
+    postcode: String @doc(description: ""),
+    latitude:Float @doc(description: ""),
+    longitude: Float @doc(description: ""),
+}

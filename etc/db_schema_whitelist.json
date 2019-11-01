@@ -1,0 +1,16 @@
+{
+    "pickup_stores": {
+        "column": {
+            "entity_id": true,
+            "name": true,
+            "street": true,
+            "street_num": true,
+            "city": true,
+            "postcode": true,
+            "open_hours": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

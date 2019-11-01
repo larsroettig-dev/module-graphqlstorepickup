@@ -1,0 +1,50 @@
+{
+    "name": "larsroettig/module-graphqlstorepickup",
+    "description": "Demo Module for GraphQL",
+    "type": "magento2-module",
+    "license": "MIT",
+    "authors": [
+        {
+            "email": "l.roettig@techdivision.com",
+            "name": "Lars Roettig"
+        }
+    ],
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "php": "~7.2.0||~7.3.0",
+        "magento/framework": "102.0.*"
+    },
+    "suggest": {
+        "magento/module-graph-ql": "100.3.*",
+        "magento/module-graph-ql-cache": "100.3.*",
+        "magento/module-store-graph-ql": "100.3.*"
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-master",
+        "magento/magento-coding-standard": "dev-master",
+        "dealerdirect/phpcodesniffer-composer-installer": "dev-master",
+        "vimeo/psalm": "^3.0@dev",
+        "phpro/grumphp": "dev-master",
+        "povils/phpmnd": "^2.1@dev",
+        "jakub-onderka/php-parallel-lint": "dev-master",
+        "phpunit/phpunit": "*",
+        "composer/composer": "*@dev"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "LarsRoettig\\GraphQLStorePickup\\": ""
+        }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://repo.magento.com/"
+        }
+    ]
+}

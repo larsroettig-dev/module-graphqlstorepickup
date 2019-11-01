@@ -1,0 +1,43 @@
+parameters:
+  bin_dir: "./vendor/bin"
+  git_dir: "."
+  hooks_dir: ~
+  hooks_preset: local
+  stop_on_failure: false
+  ignore_unstaged_changes: false
+  ascii:
+    succeeded: ~
+    failed: ~
+  tasks:
+    psalm:
+      config: psalm.xml
+      ignore_patterns: []
+      no_cache: false
+      report: ~
+      threads: 1
+      triggered_by: ['php']
+      show_info: false
+    phplint: ~
+    phpversion:
+      project: '7.2'
+    yamllint:
+      ignore_patterns: [""]
+    phpmnd:
+      directory: .
+      whitelist_patterns: []
+      exclude: [vendor]
+      exclude_name: []
+      exclude_path: []
+      extensions: []
+      hint: false
+      ignore_numbers: []
+      ignore_strings: []
+      strings: false
+      triggered_by: ['php']
+    phpcs:
+      standard: Magento2
+      metadata:
+        priority: 300
+  testsuites:
+    git_pre_commit:
+      tasks: [phpcs]

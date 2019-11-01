@@ -1,0 +1,9 @@
+/.buildpath
+/.cache
+/.metadata
+/.project
+/.settings
+/.vscode
+/vendor
+auth.json
+.DS_Store
