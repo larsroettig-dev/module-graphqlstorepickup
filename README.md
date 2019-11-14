@@ -13,6 +13,14 @@
 I will show how you can build your GraphQL for Magento 2.3 and extend them with a filter logic.
 Our use case is a Pickup from Store endpoint what our frontend team needs to create an interactive map.
 
+-----
+
+**We are hire !**
+Wanna work for one of Germany’s leading Magento partners? With agile methods, small teams and big clients? We’re currently looking for experienced PHP & Magento developers in Munich/Rosenheim.
+Sounds interesting? Just drop me a line via l.roettig+github@techdivision.com
+
+-----
+
 **In the story, we have the following acceptance criteria.**
 
 As a frontend developer, I need  Endpoint to search for the next Pickup Store in a Postcode Area.
