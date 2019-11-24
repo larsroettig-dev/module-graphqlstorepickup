@@ -6,6 +6,10 @@ type Query {
     ):pickUpStoresOutput @resolver(class: "\\LarsRoettig\\GraphQLStorePickup\\Model\\Resolver\\PickUpStores") @doc(description: "The Impelemention to resolve PickUp stores")
 }
 
+type Mutation {
+    createPickUpStore  (input: PickUpStore!): pickUpStoresOutput @resolver(class: "\\Magento\\CustomerGraphQl\\Model\\Resolver\\CreatePickUpStores") @doc(description:"Create PickUp store")
+}
+
 input PickUpStoresFilterInput {
     name: FilterTypeInput  @doc(description: "")
     postcode: FilterTypeInput @doc(description: ""),

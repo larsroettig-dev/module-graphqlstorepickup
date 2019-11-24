@@ -22,50 +22,25 @@
  */
 declare(strict_types=1);
 
-namespace LarsRoettig\GraphQLStorePickup\Model;
+namespace LarsRoettig\GraphQLStorePickup\Model\Resolver;
 
-use LarsRoettig\GraphQLStorePickup\Api\Data\StoreInterface;
-use LarsRoettig\GraphQLStorePickup\Api\StoreRepositoryInterface;
-use LarsRoettig\GraphQLStorePickup\Model\Command\GetList as ListCommand;
-use LarsRoettig\GraphQLStorePickup\Model\Command\Save as SaveCommand;
-use Magento\Framework\Api\SearchCriteriaInterface;
-use Magento\Framework\Api\SearchResultsInterface;
+use Magento\Framework\GraphQl\Config\Element\Field;
+use Magento\Framework\GraphQl\Exception\GraphQlInputException;
+use Magento\Framework\GraphQl\Query\ResolverInterface;
+use Magento\Framework\GraphQl\Schema\Type\ResolveInfo;
 
-class StoreRepository implements StoreRepositoryInterface
+class CreatePickUpStores implements ResolverInterface
 {
-    /**
-     * @var SaveCommand
-     */
-    private $saveCommand;
-
-    /**
-     * @var ListCommand
-     */
-    private $listCommand;
-
-    /**
-     * @param SaveCommand $saveCommand
-     * @param ListCommand $listCommand
-     */
-    public function __construct(SaveCommand $saveCommand, ListCommand $listCommand)
-    {
-        $this->saveCommand = $saveCommand;
-        $this->listCommand = $listCommand;
-    }
 
     /**
      * @inheritDoc
      */
-    public function save(StoreInterface $store): void
+    public function resolve(Field $field, $context, ResolveInfo $info, array $value = null, array $args = null)
     {
-        $this->saveCommand->execute($store);
-    }
+        if (empty($args['input']) || !is_array($args['input'])) {
+            throw new GraphQlInputException(__('"input" value should be specified'));
+        }
 
-    /**
-     * @inheritDoc
-     */
-    public function getList(SearchCriteriaInterface $searchCriteria = null): SearchResultsInterface
-    {
-        return $this->listCommand->execute($searchCriteria);
+
     }
 }

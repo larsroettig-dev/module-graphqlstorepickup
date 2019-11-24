@@ -26,6 +26,7 @@ namespace LarsRoettig\GraphQLStorePickup\Model\Resolver;
 
 use LarsRoettig\GraphQLStorePickup\Api\StoreRepositoryInterface;
 use LarsRoettig\GraphQLStorePickup\Model\Store\GetList;
+use LarsRoettig\GraphQLStorePickup\Model\Store\GetListInterface;
 use Magento\Framework\GraphQl\Config\Element\Field;
 use Magento\Framework\GraphQl\Exception\GraphQlInputException;
 use Magento\Framework\GraphQl\Query\Resolver\Argument\SearchCriteria\Builder as SearchCriteriaBuilder;
@@ -36,9 +37,10 @@ class PickUpStores implements ResolverInterface
 {
 
     /**
-     * @var GetListInterface
+     * @var StoreRepositoryInterface
      */
     private $storeRepository;
+
     /**
      * @var SearchCriteriaBuilder
      */
@@ -46,7 +48,7 @@ class PickUpStores implements ResolverInterface
 
     /**
      * PickUpStoresList constructor.
-     * @param GetList $storeRepository
+     * @param StoreRepositoryInterface $storeRepository
      * @param SearchCriteriaBuilder $searchCriteriaBuilder
      */
     public function __construct(StoreRepositoryInterface $storeRepository, SearchCriteriaBuilder $searchCriteriaBuilder)
@@ -60,9 +62,7 @@ class PickUpStores implements ResolverInterface
      */
     public function resolve(Field $field, $context, ResolveInfo $info, array $value = null, array $args = null)
     {
-
-        $this->vaildateArgs($args);
-
+        $this->validateArgs($args);
         $searchCriteria = $this->searchCriteriaBuilder->build('pickup_stores', $args);
         $searchCriteria->setCurrentPage($args['currentPage']);
         $searchCriteria->setPageSize($args['pageSize']);
@@ -78,7 +78,7 @@ class PickUpStores implements ResolverInterface
      * @param array $args
      * @throws GraphQlInputException
      */
-    private function vaildateArgs(array $args): void
+    private function validateArgs(array $args): void
     {
         if (isset($args['currentPage']) && $args['currentPage'] < 1) {
             throw new GraphQlInputException(__('currentPage value must be greater than 0.'));

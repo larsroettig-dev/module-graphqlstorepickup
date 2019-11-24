@@ -32,7 +32,7 @@ use Magento\TestFramework\Helper\Bootstrap;
 $storeFactory = Bootstrap::getObjectManager()->get(StoreInterfaceFactory::class);
 /** @var DataObjectHelper $dataObjectHelper */
 $dataObjectHelper = Bootstrap::getObjectManager()->get(DataObjectHelper::class);
-/** @var SourceRepositoryInterface $sourceRepository */
+/** @var StoreRepositoryInterface $sourceRepository */
 $storeRepository = Bootstrap::getObjectManager()->get(StoreRepositoryInterface::class);
 
 $storeListData = [

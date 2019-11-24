@@ -28,10 +28,30 @@ use Magento\TestFramework\TestCase\GraphQlAbstract;
 
 class PickUpStoresTest extends GraphQlAbstract
 {
-
+    /**
+     * Verify a that simple store query will work.
+     *
+     * @magentoApiDataFixture ../../../../app/code/LarsRoettig/GraphQLStorePickup/Test/_files/store_list.php
+     *
+     * @return void
+     */
     public function testSimpleStoreQuery()
     {
-        //  @todo
-        $this->markTestIncomplete('Need to Implement');
+        $query = <<<QUERY
+       {
+  pickUpStores {
+    total_count
+      items {
+        name
+        street
+        street_num
+        postcode
+      }
+  }
+}
+QUERY;
+
+        $response = $this->graphQlQuery($query);
+        var_dump($response);
     }
 }

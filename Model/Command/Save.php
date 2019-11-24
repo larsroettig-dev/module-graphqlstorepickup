@@ -22,50 +22,34 @@
  */
 declare(strict_types=1);
 
-namespace LarsRoettig\GraphQLStorePickup\Model;
+namespace LarsRoettig\GraphQLStorePickup\Model\Command;
 
+use Exception;
 use LarsRoettig\GraphQLStorePickup\Api\Data\StoreInterface;
-use LarsRoettig\GraphQLStorePickup\Api\StoreRepositoryInterface;
-use LarsRoettig\GraphQLStorePickup\Model\Command\GetList as ListCommand;
-use LarsRoettig\GraphQLStorePickup\Model\Command\Save as SaveCommand;
-use Magento\Framework\Api\SearchCriteriaInterface;
-use Magento\Framework\Api\SearchResultsInterface;
+use Magento\Framework\Exception\CouldNotSaveException;
+use LarsRoettig\GraphQLStorePickup\Model\ResourceModel\Store as StoreResourceModel;
 
-class StoreRepository implements StoreRepositoryInterface
+class Save
 {
-    /**
-     * @var SaveCommand
-     */
-    private $saveCommand;
 
     /**
-     * @var ListCommand
+     * @param StoreResourceModel $storeResourceModel
      */
-    private $listCommand;
-
-    /**
-     * @param SaveCommand $saveCommand
-     * @param ListCommand $listCommand
-     */
-    public function __construct(SaveCommand $saveCommand, ListCommand $listCommand)
+    public function __construct(StoreResourceModel $storeResourceModel)
     {
-        $this->saveCommand = $saveCommand;
-        $this->listCommand = $listCommand;
+        $this->storeResourceModel = $storeResourceModel;
     }
 
     /**
-     * @inheritDoc
+     * @param StoreInterface $store
+     * @throws CouldNotSaveException
      */
-    public function save(StoreInterface $store): void
+    public function execute(StoreInterface $store)
     {
-        $this->saveCommand->execute($store);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getList(SearchCriteriaInterface $searchCriteria = null): SearchResultsInterface
-    {
-        return $this->listCommand->execute($searchCriteria);
+        try {
+            $this->storeResourceModel->save($store);
+        } catch (Exception $e) {
+            throw new CouldNotSaveException(__('Could not save Source'), $e);
+        }
     }
 }
