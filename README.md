@@ -74,6 +74,7 @@ API will return the  following  attributes for a Pickup Store
 * Create new Table with Declarative Schema
 * Use Data Patch to import Sample Data
 * Implement own GraphQL Endpoint with Filter Query
+* Mutation to create a new PickUp Store ! Don't use this in production; there is a security check implement.
 
 ## Tested on Version
 * Magento 2.3.3
@@ -129,6 +130,28 @@ API will return the  following  attributes for a Pickup Store
       name
       street
       postcode
+    }
+  }
+}
+```
+
+**Create new PickUpStore and get the id from them**
+```graphql
+mutation {
+  createPickUpStores(
+    input: {
+      name: "Mustation Store"
+      street: "sweswq"
+      street_num: 12
+      postcode: "83059"
+      latitude: 22.3
+      longitude:22.3
+    }
+  )
+  {
+    pick_up_store {
+      entity_id
+      name
     }
   }
 }
