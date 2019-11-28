@@ -1,12 +1,15 @@
 {
     "name": "larsroettig/module-graphqlstorepickup",
     "description": "Demo Module for GraphQL",
+    "homepage": "https://larsroettig.dev/how-to-create-a-graph-ql-endpoint-for-magento-2-3",
     "type": "magento2-module",
     "license": "MIT",
     "authors": [
         {
             "email": "l.roettig@techdivision.com",
             "name": "Lars Roettig"
+            "homepage": "https://larsroettig.dev/",
+            "role": "Developer"
         }
     ],
     "config": {
